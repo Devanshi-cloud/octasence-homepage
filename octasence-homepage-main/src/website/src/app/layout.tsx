@@ -54,8 +54,8 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://airqo.net',
   ),
   title: {
-    default: 'AirQo | Bridging the Air Quality Data Gap in Africa',
-    template: '%s | AirQo',
+    default: 'Octasence | Agentic AI Infrastructure',
+    template: '%s | Octasence | Agentic AI Infrastructure',
   },
   description:
     'AirQo empowers African communities with accurate, hyperlocal, and timely air quality data to drive pollution mitigation actions. Real-time monitoring in Uganda (Kampala), Kenya (Nairobi), Nigeria (Lagos), Ghana (Accra) and 16+ African cities. We deploy low-cost sensors and provide real-time insights where 9 out of 10 people breathe polluted air.',
@@ -176,14 +176,15 @@ export const metadata: Metadata = {
     ],
   },
   icons: {
-    icon: '/web-app-manifest-192x192.png',
-    apple: '/web-app-manifest-192x192.png',
+    icon: '/assets/images/octasence-logo.png',
+    shortcut: '/assets/images/octasence-logo.png',
+    apple: '/assets/images/octasence-logo.png',
   },
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION,
   },
   other: {
-    'apple-mobile-web-app-title': 'AirQo',
+    'apple-mobile-web-app-title': 'Octasence',
     'theme-color': '#145DFF',
     'msapplication-TileColor': '#145DFF',
   },

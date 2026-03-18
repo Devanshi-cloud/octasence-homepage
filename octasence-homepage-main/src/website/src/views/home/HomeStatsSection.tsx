@@ -19,7 +19,7 @@ const HomeStatsSection: React.FC = () => {
       <div className={`${mainConfig.containerClass} space-y-16`}>
         {/* Trusted by section */}
         <div className="text-center space-y-4">
-          <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-widest">
+          <h3 className="text-sm font-semibold text-[#31456F] uppercase tracking-widest">
             TRUSTED BY INDUSTRY LEADERS
           </h3>
           <div className="flex flex-wrap justify-center gap-8 items-center">
@@ -27,7 +27,7 @@ const HomeStatsSection: React.FC = () => {
               (name) => (
                 <span
                   key={name}
-                  className="text-gray-400 font-semibold text-lg opacity-60"
+                  className="text-[#41557F] font-semibold text-lg opacity-90"
                 >
                   {name}
                 </span>
@@ -48,11 +48,14 @@ const HeadingSection: React.FC<{
   activeTab: 'infrastructure' | 'analytics';
   setActiveTab: (tab: 'infrastructure' | 'analytics') => void;
 }> = ({ activeTab, setActiveTab }) => (
-  <div className="text-center space-y-6">
-    <h2 className="text-3xl lg:text-5xl font-bold">
+  <div className="text-center space-y-6 max-w-5xl mx-auto bg-white/80 rounded-[2rem] px-6 py-10 shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
+    <h2
+      className="text-3xl lg:text-5xl font-black tracking-tight"
+      style={{ color: '#08162C' }}
+    >
       Real-Time Infrastructure <br /> Intelligence
     </h2>
-    <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+    <p className="text-lg max-w-3xl mx-auto" style={{ color: '#31456F' }}>
       OctaSence delivers continuous structural awareness by combining industrial
       IoT sensors, AI-driven analytics, and digital twin visualization.
     </p>
@@ -94,7 +97,7 @@ const AccordionAndImageSection: React.FC<{
           <div className="text-center text-white space-y-3 px-8">
             <div className="text-5xl mb-4">🔩</div>
             <p className="text-xl font-semibold">Structural Health Monitoring</p>
-            <p className="text-sm text-blue-200 opacity-80">
+            <p className="text-sm text-blue-100 opacity-95">
               Real-time sensor data across mines, tunnels, and dams
             </p>
           </div>
@@ -102,7 +105,7 @@ const AccordionAndImageSection: React.FC<{
           <div className="text-center text-white space-y-3 px-8">
             <div className="text-5xl mb-4">📊</div>
             <p className="text-xl font-semibold">AI Predictive Analytics</p>
-            <p className="text-sm text-blue-200 opacity-80">
+            <p className="text-sm text-blue-100 opacity-95">
               Machine learning models detecting structural risks early
             </p>
           </div>
@@ -131,7 +134,7 @@ const StatisticsSection: React.FC = () => {
               <p className="text-3xl font-bold">
                 {formatStatValue(stat.value, stat.key)}
               </p>
-              <p className="text-gray-600">{stat.label}</p>
+              <p className="text-[#425778]">{stat.label}</p>
             </div>
             <div className="flex items-center justify-center w-12 h-12 bg-white rounded-full">
               <IconComponent

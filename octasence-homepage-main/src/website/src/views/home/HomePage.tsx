@@ -63,6 +63,11 @@ const HomePage = () => {
             imageUrl="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=800&q=80"
             reverse={false}
             backgroundColor="bg-transparent"
+            subtitleColor="text-blue-100"
+            subtitleBgColor="bg-white/10"
+            titleClassName="text-white"
+            descriptionClassName="text-white/80"
+            linkClassName="text-blue-300"
           />
         </MotionSection>
 
@@ -94,6 +99,11 @@ const HomePage = () => {
             backgroundColor="bg-transparent"
             leftWidth="lg:w-1/3"
             rightWidth="lg:w-2/3"
+            subtitleColor="text-blue-100"
+            subtitleBgColor="bg-white/10"
+            titleClassName="text-white"
+            descriptionClassName="text-white/80"
+            linkClassName="text-blue-300"
           />
         </MotionSection>
 
@@ -115,6 +125,11 @@ const HomePage = () => {
             backgroundColor="bg-transparent"
             reverse={true}
             imageClassName="object-cover rounded-xl"
+            subtitleColor="text-blue-100"
+            subtitleBgColor="bg-white/10"
+            titleClassName="text-white"
+            descriptionClassName="text-white/80"
+            linkClassName="text-blue-300"
           />
         </MotionSection>
       </div>

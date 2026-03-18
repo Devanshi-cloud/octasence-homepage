@@ -6,6 +6,16 @@
 
 :root {
   --font-inter: 'Inter', sans-serif;
+  --octa-bg: #060814;
+  --octa-bg-soft: #0a1024;
+  --octa-surface: rgba(11, 18, 40, 0.72);
+  --octa-surface-strong: #0b1228;
+  --octa-border: rgba(148, 163, 184, 0.16);
+  --octa-text: rgba(255, 255, 255, 0.94);
+  --octa-muted: rgba(226, 232, 240, 0.68);
+  --octa-accent: #3b82f6;
+  --octa-accent-strong: #0000ff;
+  --octa-shadow: 0 24px 80px rgba(2, 6, 23, 0.45);
 
   /* Zoom-responsive spacing variables */
   --billboard-spacing-xs: clamp(0.25rem, 0.5vw, 0.5rem);
@@ -27,6 +37,11 @@
 
 body {
   font-family: var(--font-inter);
+  background:
+    radial-gradient(circle at top, rgba(59, 130, 246, 0.18), transparent 28%),
+    radial-gradient(circle at 85% 12%, rgba(99, 102, 241, 0.16), transparent 22%),
+    linear-gradient(180deg, #060814 0%, #08101f 46%, #0b1325 100%);
+  color: var(--octa-text);
 }
 
 .font-dm-mono {
@@ -34,6 +49,96 @@ body {
 }
 
 @layer utilities {
+  .octa-shell {
+    position: relative;
+    isolation: isolate;
+    background:
+      radial-gradient(circle at top, rgba(59, 130, 246, 0.1), transparent 24%),
+      radial-gradient(circle at right top, rgba(99, 102, 241, 0.08), transparent 18%),
+      linear-gradient(180deg, rgba(6, 8, 20, 0.96) 0%, rgba(8, 16, 31, 0.98) 46%, rgba(11, 19, 37, 1) 100%);
+  }
+
+  .octa-grid {
+    background-image:
+      linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+
+  .octa-glass {
+    background: var(--octa-surface);
+    border: 1px solid var(--octa-border);
+    box-shadow: var(--octa-shadow);
+    backdrop-filter: blur(20px);
+  }
+
+  .octa-panel {
+    background:
+      linear-gradient(180deg, rgba(15, 23, 42, 0.92) 0%, rgba(10, 16, 36, 0.94) 100%);
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    box-shadow: 0 30px 80px rgba(2, 6, 23, 0.38);
+  }
+
+  .octa-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.45rem 1rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .octa-heading {
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1.02;
+    color: #fff;
+  }
+
+  .octa-lead {
+    color: var(--octa-muted);
+    font-weight: 600;
+    line-height: 1.75;
+  }
+
+  .octa-accent-text {
+    background: linear-gradient(90deg, #60a5fa 0%, #0000ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .octa-card {
+    border-radius: 1.5rem;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    background:
+      linear-gradient(180deg, rgba(11, 18, 40, 0.95) 0%, rgba(8, 12, 26, 0.98) 100%);
+    box-shadow: 0 24px 80px rgba(2, 6, 23, 0.34);
+  }
+
+  .octa-button {
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #2563eb 0%, #0000ff 100%);
+    color: #fff;
+    font-weight: 900;
+    box-shadow: 0 18px 40px rgba(37, 99, 235, 0.28);
+  }
+
+  .octa-button-secondary {
+    border-radius: 9999px;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.88);
+    font-weight: 800;
+    backdrop-filter: blur(16px);
+  }
+
   .text-balance {
     text-wrap: balance;
   }
@@ -113,7 +218,7 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
   }
 }
 

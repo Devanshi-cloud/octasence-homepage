@@ -46,8 +46,8 @@ const HeroSection: React.FC = () => {
           className="w-full h-full object-cover opacity-60"
         />
         {/* Premium Vignette & Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80" />
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-transparent to-blue-900/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/72 via-black/30 to-black/88" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-950/35 via-transparent to-blue-950/35" />
         <div className="absolute inset-0 backdrop-blur-[1px]" />
       </div>
 
@@ -60,7 +60,7 @@ const HeroSection: React.FC = () => {
       >
         <motion.h1
           variants={itemVariants}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.3] mb-6 tracking-tight"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.3] mb-6 tracking-tight drop-shadow-[0_8px_28px_rgba(0,0,0,0.55)]"
         >
           Predict Infrastructure <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#97a9f6] to-[#5b6cf3]">
@@ -70,7 +70,7 @@ const HeroSection: React.FC = () => {
 
         <motion.p
           variants={itemVariants}
-          className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed"
+          className="text-lg md:text-xl text-white mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow-[0_6px_18px_rgba(0,0,0,0.45)]"
         >
           OctaSence combines AI agents, IoT sensors, and real-time digital twins to
           monitor structural health across mines, tunnels, dams, and large

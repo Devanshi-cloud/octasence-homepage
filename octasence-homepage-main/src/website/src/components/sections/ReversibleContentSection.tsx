@@ -17,6 +17,9 @@ type ReversibleContentSectionProps = {
   leftWidth?: string;
   rightWidth?: string;
   imageClassName?: string;
+  titleClassName?: string;
+  descriptionClassName?: string;
+  linkClassName?: string;
 };
 
 const ReversibleContentSection: React.FC<ReversibleContentSectionProps> = ({
@@ -33,6 +36,9 @@ const ReversibleContentSection: React.FC<ReversibleContentSectionProps> = ({
   leftWidth = 'lg:w-1/2',
   rightWidth = 'lg:w-1/2',
   imageClassName = 'object-contain lg:object-cover',
+  titleClassName,
+  descriptionClassName,
+  linkClassName,
 }) => {
   return (
     <section className={cn(backgroundColor, 'py-16 px-4')}>
@@ -57,19 +63,31 @@ const ReversibleContentSection: React.FC<ReversibleContentSectionProps> = ({
               {subtitle}
             </span>
           )}
-          <h2 className="text-3xl lg:text-5xl font-medium text-gray-900">
+          <h2
+            className={cn(
+              'text-3xl lg:text-5xl font-semibold text-[#08162C]',
+              titleClassName,
+            )}
+          >
             {title}
           </h2>
           {typeof description === 'string' ? (
-            <p className="text-lg text-gray-600">{description}</p>
+            <p className={cn('text-lg text-[#31456F]', descriptionClassName)}>
+              {description}
+            </p>
           ) : (
-            <div className="text-lg text-gray-600">{description}</div>
+            <div className={cn('text-lg text-[#31456F]', descriptionClassName)}>
+              {description}
+            </div>
           )}
 
           {buttonLink.startsWith('http') ? (
             <a
               href={buttonLink}
-              className="inline-block text-blue-600 font-medium hover:underline mt-4"
+              className={cn(
+                'inline-block text-[#0F47D7] font-semibold hover:underline mt-4',
+                linkClassName,
+              )}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -78,7 +96,10 @@ const ReversibleContentSection: React.FC<ReversibleContentSectionProps> = ({
           ) : (
             <a
               href={buttonLink}
-              className="inline-block text-blue-600 font-medium hover:underline mt-4"
+              className={cn(
+                'inline-block text-[#0F47D7] font-semibold hover:underline mt-4',
+                linkClassName,
+              )}
             >
               {buttonText} →
             </a>

@@ -14,6 +14,9 @@ type AnalyticsContentSectionProps = {
   backgroundColor?: string;
   subtitleColor?: string;
   subtitleBgColor?: string;
+  titleClassName?: string;
+  descriptionClassName?: string;
+  linkClassName?: string;
 };
 
 const AnalyticsContentSection: React.FC<AnalyticsContentSectionProps> = ({
@@ -26,6 +29,9 @@ const AnalyticsContentSection: React.FC<AnalyticsContentSectionProps> = ({
   backgroundColor = 'bg-[#f0f4fa]',
   subtitleColor = 'text-gray-900',
   subtitleBgColor = 'bg-gray-200',
+  titleClassName,
+  descriptionClassName,
+  linkClassName,
 }) => {
   return (
     <section className={cn(backgroundColor, 'pt-16 px-4')}>
@@ -44,15 +50,25 @@ const AnalyticsContentSection: React.FC<AnalyticsContentSectionProps> = ({
             >
               {subtitle}
             </span>
-            <h2 className="text-3xl lg:text-5xl font-medium text-gray-900">
+            <h2
+              className={cn(
+                'text-3xl lg:text-5xl font-semibold text-[#08162C]',
+                titleClassName,
+              )}
+            >
               {title}
             </h2>
           </div>
           <div className="lg:w-1/2 space-y-4 text-center lg:text-left">
-            <p className="text-lg text-gray-600">{description}</p>
+            <p className={cn('text-lg text-[#31456F]', descriptionClassName)}>
+              {description}
+            </p>
             <a
               href={buttonLink}
-              className="inline-block text-blue-600 font-medium hover:underline mt-4"
+              className={cn(
+                'inline-block text-[#0F47D7] font-semibold hover:underline mt-4',
+                linkClassName,
+              )}
             >
               {buttonText} →
             </a>

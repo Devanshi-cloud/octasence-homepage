@@ -20,17 +20,19 @@ interface MainLayoutProps {
 
 const MainLayout = ({ children, topFullWidth, noPaddingTop }: MainLayoutProps) => {
   return (
-    <div className="min-h-screen w-full flex flex-col overflow-x-hidden">
+    <div className="octa-shell min-h-screen w-full flex flex-col overflow-x-hidden">
+      <div className="octa-grid absolute inset-0 opacity-[0.08] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-blue-500/12 blur-[120px] pointer-events-none" />
       {/* Navbar */}
       <Navbar />
 
       {/* Main Content */}
-      <main className={cn("flex-1 pb-8", !noPaddingTop && "pt-28")}>
+      <main className={cn('relative z-10 flex-1 pb-8', !noPaddingTop && 'pt-28')}>
         <PageTransitionWrapper>
           {/* Optional full-width area inserted before the centered container */}
           {topFullWidth}
 
-          <div className="text-gray-700 w-full">{children}</div>
+          <div className="w-full text-white/88">{children}</div>
 
           {/* Highlight Section */}
           <section className="mt-32 mb-8">

@@ -3,16 +3,18 @@ import { removeTrailingSlash } from '@/utils';
 import { EnhancedApiError, RequestConfig, ServiceResponse } from './base';
 
 interface ApiClientConfig {
-  baseURL: string;
+  baseURL?: string;
   timeout?: number;
 }
 
 class ApiClient {
-  private baseURL: string;
+  private baseURL?: string;
   private defaultTimeout: number;
 
   constructor(config: ApiClientConfig) {
-    this.baseURL = removeTrailingSlash(config.baseURL);
+    this.baseURL = config.baseURL
+      ? removeTrailingSlash(config.baseURL)
+      : undefined;
     this.defaultTimeout = config.timeout || 30000;
   }
 
@@ -84,12 +86,13 @@ class ApiClient {
 
   private buildUrl(endpoint: string, params?: Record<string, any>): string {
     const isServerSide = typeof window === 'undefined';
+    const resolvedBaseURL = this.resolveBaseURL(isServerSide);
     let url: string;
 
     if (isServerSide) {
       // Server-side: Direct backend API call
       // Normalize baseURL to ensure it ends with /api/v2
-      let normalizedBaseURL = this.baseURL.replace(/\/$/, ''); // Remove trailing slash
+      let normalizedBaseURL = resolvedBaseURL.replace(/\/$/, ''); // Remove trailing slash
       if (!normalizedBaseURL.endsWith('/api/v2')) {
         normalizedBaseURL += '/api/v2';
       }
@@ -107,13 +110,13 @@ class ApiClient {
         const cleanEndpoint = endpoint.startsWith('/')
           ? endpoint.slice(1)
           : endpoint;
-        url = `${this.baseURL}/${cleanEndpoint}`;
+        url = `${resolvedBaseURL}/${cleanEndpoint}`;
       } else {
         // Regular API endpoints: /api/v2/devices/grids/summary
         const normalizedEndpoint = endpoint.startsWith('/')
           ? endpoint
           : `/${endpoint}`;
-        url = `${this.baseURL}${normalizedEndpoint}`;
+        url = `${resolvedBaseURL}${normalizedEndpoint}`;
       }
     }
 
@@ -144,24 +147,33 @@ class ApiClient {
 
     return url;
   }
+
+  private resolveBaseURL(isServerSide: boolean): string {
+    if (!isServerSide) {
+      return this.baseURL || '/api/v2';
+    }
+
+    const serverBaseURL =
+      this.baseURL || process.env.API_URL || process.env.NEXT_PUBLIC_API_URL;
+
+    if (!serverBaseURL) {
+      throw new Error(
+        'API_URL or NEXT_PUBLIC_API_URL environment variable is required for server-side API calls',
+      );
+    }
+
+    return serverBaseURL;
+  }
 }
 
 // Create the API client instance
 // Use absolute backend URL on server-side (direct API calls with token)
 // Use Next.js proxy on client-side (hides API from network tab)
-const isServerSide = typeof window === 'undefined';
-const apiUrl = isServerSide
-  ? process.env.API_URL || process.env.NEXT_PUBLIC_API_URL
-  : '/api/v2';
-
-if (isServerSide && !apiUrl) {
-  throw new Error(
-    'API_URL or NEXT_PUBLIC_API_URL environment variable is required for server-side API calls',
-  );
-}
-
 const apiClient = new ApiClient({
-  baseURL: apiUrl!,
+  baseURL:
+    typeof window === 'undefined'
+      ? process.env.API_URL || process.env.NEXT_PUBLIC_API_URL
+      : '/api/v2',
   timeout: 30000,
 });
 

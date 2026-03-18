@@ -516,8 +516,7 @@ export function generateMetadata(config: MetadataConfig): Metadata {
 // Page-specific metadata configurations with enhanced SEO
 export const METADATA_CONFIGS = {
   home: {
-    title:
-      "AirQo | Africa's Leading Air Quality Monitoring Network - Real-time Pollution Data",
+    title: 'Octasence | Agentic AI Infrastructure',
     description:
       'Leading air quality monitoring network across Africa. Real-time PM2.5 data from 400+ sensors in 14 African countries. Track pollution levels across major African cities. Free mobile app & API access. Trusted by governments, researchers, and communities. Partner: Google.org, World Bank, WHO.',
     keywords:
