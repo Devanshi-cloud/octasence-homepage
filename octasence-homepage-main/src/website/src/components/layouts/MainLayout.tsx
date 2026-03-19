@@ -44,16 +44,18 @@ const MainLayout = ({
 
           <div className="w-full text-white/88">{children}</div>
 
-          {showHighlight && (
+          {showHighlight && pathname !== '/careers' && (
             <section className="mt-32 mb-8">
               <Highlight />
             </section>
           )}
 
           {/* Action Buttons Section */}
-          <section className="my-8">
-            <ActionButtons />
-          </section>
+          {pathname !== '/careers' && (
+            <section className="my-8">
+              <ActionButtons />
+            </section>
+          )}
         </PageTransitionWrapper>
       </main>
 
