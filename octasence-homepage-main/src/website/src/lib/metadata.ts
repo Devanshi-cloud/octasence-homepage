@@ -627,8 +627,7 @@ export const METADATA_CONFIGS = {
     },
   },
   contact: {
-    title:
-      'Contact AirQo Uganda | Kampala Office - Makerere University | Partner with Us Kenya, Nigeria',
+    title: 'Contact OctaSence',
     description:
       'Contact AirQo Kampala office at Makerere University, Uganda. Partnership inquiries for Uganda, Kenya, Nigeria, Ghana projects. Technical support for African sensors. Collaboration with East/West African organizations. Email: info@airqo.net. Office: Makerere University, Kampala, Uganda. Serving Uganda, Kenya, Nigeria.',
     keywords:

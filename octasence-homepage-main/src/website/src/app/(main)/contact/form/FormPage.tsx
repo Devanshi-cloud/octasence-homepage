@@ -82,26 +82,32 @@ const FormPage: React.FC = () => {
   if (success) {
     return (
       <div
-        className="flex flex-col lg:flex-row w-full bg-[#F9FAFB]"
+        className="flex w-full flex-col bg-[#F9FAFB] text-[#08162C] lg:flex-row"
         style={{ height: 'calc(100vh - 132px)' }}
       >
         {/* Contact Information Section */}
         <section className="flex-1 flex items-center justify-center bg-yellow-50 p-8 mb-8 lg:mb-0 lg:h-auto h-full">
           <div className="max-w-md">
             <h2 className="text-3xl font-bold mb-4">Get in touch</h2>
-            <p className="text-lg font-semibold mb-4">Makerere University</p>
+            <p className="text-lg font-semibold mb-2">India Office</p>
+            <p className="mb-4 text-gray-600">
+              No 589, 14 th main road Kumaraswamy Layout, Bengaluru 560078.
+            </p>
+            <p className="text-lg font-semibold mb-2">Estonia Office</p>
             <p className="text-gray-600 mb-2">
-              Software Systems Centre, Block B, Level 3, College of Computing
-              and Information Sciences, Plot 56 University Pool Road, Kampala,
-              Uganda
+              Ahtri 12
+              <br />
+              Tallinn 15551
+              <br />
+              Estonia
             </p>
             <p className="text-lg mt-4">
               E:{' '}
               <a
-                href="mailto:info@airqo.net"
+                href="mailto:admin@octasence.com"
                 className="text-blue-600 underline"
               >
-                info@airqo.net
+                admin@octasence.com
               </a>
             </p>
           </div>
@@ -133,22 +139,32 @@ const FormPage: React.FC = () => {
 
   return (
     <div
-      className="flex flex-col lg:flex-row w-full bg-[#F9FAFB]"
+      className="flex w-full flex-col bg-[#F9FAFB] text-[#08162C] lg:flex-row"
       style={{ height: 'calc(100vh - 132px)' }}
     >
       {/* Contact Information Section */}
       <section className="flex-1 flex items-center justify-center bg-yellow-50 p-8 mb-8 lg:mb-0 lg:h-auto h-full">
         <div className="max-w-md">
           <h2 className="text-3xl font-bold mb-4">Get in touch</h2>
-          <p className="text-lg font-semibold mb-4">Makerere University</p>
+          <p className="text-lg font-semibold mb-2">India Office</p>
+          <p className="mb-4 text-gray-600">
+            No 589, 14 th main road Kumaraswamy Layout, Bengaluru 560078.
+          </p>
+          <p className="text-lg font-semibold mb-2">Estonia Office</p>
           <p className="text-gray-600 mb-2">
-            Software Systems Centre, Block B, Level 3, College of Computing and
-            Information Sciences, Plot 56 University Pool Road, Kampala, Uganda
+            Ahtri 12
+            <br />
+            Tallinn 15551
+            <br />
+            Estonia
           </p>
           <p className="text-lg mt-4">
             E:{' '}
-            <a href="mailto:info@airqo.net" className="text-blue-600 underline">
-              info@airqo.net
+            <a
+              href="mailto:admin@octasence.com"
+              className="text-blue-600 underline"
+            >
+              admin@octasence.com
             </a>
           </p>
         </div>

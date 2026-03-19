@@ -4,7 +4,7 @@ import React from 'react';
 import Navbar from '@/components/layouts/Navbar';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | AirQo - Get in Touch for Air Quality Solutions',
+  title: 'Contact OctaSence',
   description:
     'Reach out to AirQo for inquiries, partnerships, or support. Whether you are looking for air quality data, seeking collaboration, or need assistance with our tools and services, our team is ready to assist.',
   keywords:

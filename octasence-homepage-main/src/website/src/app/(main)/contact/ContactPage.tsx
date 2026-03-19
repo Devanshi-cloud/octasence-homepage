@@ -39,11 +39,11 @@ const ContactPage: React.FC = () => {
 
   return (
     <div
-      className="flex flex-col lg:flex-row w-full bg-[#F9FAFB]"
+      className="flex w-full flex-col bg-[#F9FAFB] text-[#08162C] lg:flex-row"
       style={{ height: 'calc(100vh - 132px)' }}
     >
       {/* Contact Information Section */}
-      <section className="flex-1 flex items-center justify-center bg-yellow-50 p-8 mb-8 lg:mb-0 lg:h-auto h-full">
+      <section className="mb-8 flex h-full flex-1 items-center justify-center bg-yellow-50 p-8 lg:mb-0 lg:h-auto">
         <motion.div
           className="max-w-md"
           variants={itemVariants}
@@ -51,15 +51,25 @@ const ContactPage: React.FC = () => {
           animate="visible"
         >
           <h2 className="text-3xl font-bold mb-4">Get in touch</h2>
-          <p className="text-lg font-semibold mb-4">Makerere University</p>
+          <p className="text-lg font-semibold mb-2">India Office</p>
+          <p className="mb-4 text-gray-600">
+            No 589, 14 th main road Kumaraswamy Layout, Bengaluru 560078.
+          </p>
+          <p className="text-lg font-semibold mb-2">Estonia Office</p>
           <p className="text-gray-600 mb-2">
-            Software Systems Centre, Block B, Level 3, College of Computing and
-            Information Sciences, Plot 56 University Pool Road, Kampala, Uganda
+            Ahtri 12
+            <br />
+            Tallinn 15551
+            <br />
+            Estonia
           </p>
           <p className="text-lg mt-4">
             E:{' '}
-            <a href="mailto:info@airqo.net" className="text-blue-600 underline">
-              info@airqo.net
+            <a
+              href="mailto:admin@octasence.com"
+              className="text-blue-600 underline"
+            >
+              admin@octasence.com
             </a>
           </p>
         </motion.div>
@@ -76,12 +86,12 @@ const ContactPage: React.FC = () => {
           {
             icon: <FiTablet size={24} className="text-blue-500" />,
             question: 'I have a question about',
-            detail: 'Air Quality Tools',
+            detail: 'SHM Sensors',
           },
           {
             icon: <FiDatabase size={24} className="text-blue-500" />,
             question: 'I have a question about',
-            detail: 'Air Quality Data',
+            detail: 'SHM Data & Analytics',
           },
           {
             icon: <FiStar size={24} className="text-blue-500" />,
@@ -97,14 +107,14 @@ const ContactPage: React.FC = () => {
           <button
             key={index}
             onClick={() => handleButtonClick(item.detail)}
-            className="flex cursor-pointer items-center p-6 border border-gray-300 hover:bg-blue-50 shadow-sm bg-white w-full text-left"
+            className="flex w-full cursor-pointer items-center border border-gray-300 bg-white p-6 text-left shadow-sm hover:bg-blue-50"
           >
             <div className="flex-shrink-0 p-4 bg-blue-100 rounded-full mr-4">
               {item.icon}
             </div>
             <div>
               <p className="text-gray-600">{item.question}</p>
-              <p className="font-bold">{item.detail}</p>
+              <p className="text-[#08162C]">{item.detail}</p>
             </div>
           </button>
         ))}
