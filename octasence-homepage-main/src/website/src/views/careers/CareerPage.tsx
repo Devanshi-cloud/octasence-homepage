@@ -21,33 +21,42 @@ import mainConfig from '@/configs/mainConfigs';
 import { useCareers, useDepartments } from '@/hooks/useApiHooks';
 
 // Helper component for the 3D Canvas Globe
-const Globe: React.FC<{ rotationOffset: number; isDragging: boolean }> = ({ rotationOffset, isDragging }) => {
+const Globe: React.FC<{ rotationOffset: number; isDragging: boolean }> = ({
+  rotationOffset,
+  isDragging,
+}) => {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const rotationRef = React.useRef(0);
   const dragOffsetRef = React.useRef(0);
 
   const dots = React.useMemo(() => {
-    const points: { x: number; y: number; z: number; type: 'land' | 'ocean' }[] = [];
+    const points: {
+      x: number;
+      y: number;
+      z: number;
+      type: 'land' | 'ocean';
+    }[] = [];
     const count = 3500;
     for (let i = 0; i < count; i++) {
-        const phi = Math.acos(-1 + (2 * i) / count);
-        const theta = Math.sqrt(count * Math.PI) * phi;
-        const lat = (phi * 180) / Math.PI - 90;
-        const lon = ((theta * 180) / Math.PI) % 360 - 180;
-        const isLand = 
-            (lon > -130 && lon < -35 && lat > -55 && lat < 75) || // Americas
-            (lon > -10 && lon < 150 && lat > 15 && lat < 78) || // Eurasia
-            (lon > -20 && lon < 55 && lat > -38 && lat < 38) || // Africa
-            (lon > 95 && lon < 155 && lat > -48 && lat < 5) || // Australia & Indonesia
-            (lon > -30 && lon < -10 && lat > 60 && lat < 85) || // Greenland
-            (lat > 75) || (lat < -80); 
-        
-        points.push({
-            x: Math.sin(phi) * Math.cos(theta),
-            y: Math.cos(phi),
-            z: Math.sin(phi) * Math.sin(theta),
-            type: isLand ? 'land' : 'ocean'
-        });
+      const phi = Math.acos(-1 + (2 * i) / count);
+      const theta = Math.sqrt(count * Math.PI) * phi;
+      const lat = (phi * 180) / Math.PI - 90;
+      const lon = (((theta * 180) / Math.PI) % 360) - 180;
+      const isLand =
+        (lon > -130 && lon < -35 && lat > -55 && lat < 75) || // Americas
+        (lon > -10 && lon < 150 && lat > 15 && lat < 78) || // Eurasia
+        (lon > -20 && lon < 55 && lat > -38 && lat < 38) || // Africa
+        (lon > 95 && lon < 155 && lat > -48 && lat < 5) || // Australia & Indonesia
+        (lon > -30 && lon < -10 && lat > 60 && lat < 85) || // Greenland
+        lat > 75 ||
+        lat < -80;
+
+      points.push({
+        x: Math.sin(phi) * Math.cos(theta),
+        y: Math.cos(phi),
+        z: Math.sin(phi) * Math.sin(theta),
+        type: isLand ? 'land' : 'ocean',
+      });
     }
     return points;
   }, []);
@@ -57,7 +66,7 @@ const Globe: React.FC<{ rotationOffset: number; isDragging: boolean }> = ({ rota
     { name: 'US', lat: 39.0, lon: -98.0 },
     { name: 'India', lat: 28.6, lon: 77.2 },
     { name: 'Australia', lat: -33.8, lon: 151.2 },
-    { name: 'Asia', lat: 35.0, lon: 105.0 }
+    { name: 'Asia', lat: 35.0, lon: 105.0 },
   ];
 
   React.useEffect(() => {
@@ -90,7 +99,7 @@ const Globe: React.FC<{ rotationOffset: number; isDragging: boolean }> = ({ rota
           const scale = (rz + 2) / 2.5;
           const px = centerX + rx * radius * scale;
           const py = centerY + dot.y * radius * scale;
-          
+
           ctx.beginPath();
           ctx.arc(px, py, 1.2 * scale, 0, 7);
           ctx.fillStyle = '#FFFFFF';
@@ -100,28 +109,28 @@ const Globe: React.FC<{ rotationOffset: number; isDragging: boolean }> = ({ rota
       }
       ctx.globalAlpha = 1.0;
 
-      locations.forEach(loc => {
-         const phi = (90 - loc.lat) * (Math.PI / 180);
-         const theta = (loc.lon + 180) * (Math.PI / 180);
-         const dx = Math.sin(phi) * Math.cos(theta);
-         const dy = Math.cos(phi);
-         const dz = Math.sin(phi) * Math.sin(theta);
-         const rz = dx * sinY + dz * cosY;
-         if (rz > 0.15) {
-             const rx = dx * cosY - dz * sinY;
-             const scale = (rz + 2) / 2.5;
-             const px = centerX + rx * radius * scale;
-             const py = centerY + dy * radius * scale;
-             ctx.beginPath();
-             ctx.arc(px, py, 8 * scale, 0, 7);
-             ctx.strokeStyle = 'rgba(79, 70, 229, 0.5)';
-             ctx.lineWidth = 2;
-             ctx.stroke();
-             ctx.beginPath();
-             ctx.arc(px, py, 4 * scale, 0, 7);
-             ctx.fillStyle = '#6366f1';
-             ctx.fill();
-         }
+      locations.forEach((loc) => {
+        const phi = (90 - loc.lat) * (Math.PI / 180);
+        const theta = (loc.lon + 180) * (Math.PI / 180);
+        const dx = Math.sin(phi) * Math.cos(theta);
+        const dy = Math.cos(phi);
+        const dz = Math.sin(phi) * Math.sin(theta);
+        const rz = dx * sinY + dz * cosY;
+        if (rz > 0.15) {
+          const rx = dx * cosY - dz * sinY;
+          const scale = (rz + 2) / 2.5;
+          const px = centerX + rx * radius * scale;
+          const py = centerY + dy * radius * scale;
+          ctx.beginPath();
+          ctx.arc(px, py, 8 * scale, 0, 7);
+          ctx.strokeStyle = 'rgba(79, 70, 229, 0.5)';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.arc(px, py, 4 * scale, 0, 7);
+          ctx.fillStyle = '#6366f1';
+          ctx.fill();
+        }
       });
       animationId = requestAnimationFrame(render);
     };
@@ -130,11 +139,21 @@ const Globe: React.FC<{ rotationOffset: number; isDragging: boolean }> = ({ rota
   }, [isDragging, dots]);
 
   return (
-    <div className="w-full flex justify-center" style={{
-      maskImage: 'radial-gradient(circle, rgb(0, 0, 0) 65%, rgba(0, 0, 0, 0) 75%)',
-      WebkitMaskImage: 'radial-gradient(circle, rgb(0, 0, 0) 65%, rgba(0, 0, 0, 0) 75%)',
-    }}>
-      <canvas ref={canvasRef} width={800} height={800} className="w-full max-w-[600px] aspect-square" />
+    <div
+      className="w-full flex justify-center"
+      style={{
+        maskImage:
+          'radial-gradient(circle, rgb(0, 0, 0) 65%, rgba(0, 0, 0, 0) 75%)',
+        WebkitMaskImage:
+          'radial-gradient(circle, rgb(0, 0, 0) 65%, rgba(0, 0, 0, 0) 75%)',
+      }}
+    >
+      <canvas
+        ref={canvasRef}
+        width={800}
+        height={800}
+        className="w-full max-w-[600px] aspect-square"
+      />
     </div>
   );
 };
@@ -249,89 +268,87 @@ const CareerPage: React.FC = () => {
     return () => cancelAnimationFrame(animationFrameId);
   }, [isDragging]);
 
-// Helper component for the Smoky Wavy Background (Clarity AI Style)
-const AtmosphericWaves: React.FC = () => {
+  // Helper component for the Smoky Wavy Background (Clarity AI Style)
+  const AtmosphericWaves: React.FC = () => {
     return (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {/* Drifting smoky waves using multiple pulsing gradients */}
-            <motion.div 
-                animate={{ 
-                    scale: [1, 1.2, 1],
-                    x: ['-10%', '10%', '-10%'],
-                    y: ['-5%', '5%', '-5%']
-                }}
-                transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-1/4 -left-1/4 w-[150%] h-[150%] bg-[radial-gradient(circle_at_30%_50%,#4338ca_0%,transparent_50%)] opacity-30 blur-[120px]"
-            />
-            <motion.div 
-                animate={{ 
-                    scale: [1.2, 1, 1.2],
-                    x: ['10%', '-10%', '10%'],
-                    y: ['5%', '-5%', '5%']
-                }}
-                transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-1/4 -right-1/4 w-[150%] h-[150%] bg-[radial-gradient(circle_at_70%_50%,#3b82f6_0%,transparent_50%)] opacity-20 blur-[120px]"
-            />
-            <motion.div 
-                animate={{ 
-                    opacity: [0.3, 0.5, 0.3],
-                    scale: [1, 1.1, 1]
-                }}
-                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,#6d28d9_0%,transparent_60%)] opacity-20 blur-[100px]"
-            />
-        </div>
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Drifting smoky waves using multiple pulsing gradients */}
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            x: ['-10%', '10%', '-10%'],
+            y: ['-5%', '5%', '-5%'],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -top-1/4 -left-1/4 w-[150%] h-[150%] bg-[radial-gradient(circle_at_30%_50%,#4338ca_0%,transparent_50%)] opacity-30 blur-[120px]"
+        />
+        <motion.div
+          animate={{
+            scale: [1.2, 1, 1.2],
+            x: ['10%', '-10%', '10%'],
+            y: ['5%', '-5%', '5%'],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -bottom-1/4 -right-1/4 w-[150%] h-[150%] bg-[radial-gradient(circle_at_70%_50%,#3b82f6_0%,transparent_50%)] opacity-20 blur-[120px]"
+        />
+        <motion.div
+          animate={{
+            opacity: [0.3, 0.5, 0.3],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,#6d28d9_0%,transparent_60%)] opacity-20 blur-[100px]"
+        />
+      </div>
     );
-};
+  };
 
-// Helper component for the Moving Spark animation (Clarity AI Style with Framer Motion)
-const MovingSpark: React.FC = () => {
+  // Helper component for the Moving Spark animation (Clarity AI Style with Framer Motion)
+  const MovingSpark: React.FC = () => {
     const sparks = [
-        { top: '15%', delay: 0, duration: 2.5, width: '40vw' },
-        { top: '35%', delay: 0.8, duration: 2, width: '50vw' },
-        { top: '55%', delay: 1.5, duration: 3.2, width: '35vw' },
-        { top: '25%', delay: 0.4, duration: 2.2, width: '45vw' }
+      { top: '15%', delay: 0, duration: 2.5, width: '40vw' },
+      { top: '35%', delay: 0.8, duration: 2, width: '50vw' },
+      { top: '55%', delay: 1.5, duration: 3.2, width: '35vw' },
+      { top: '25%', delay: 0.4, duration: 2.2, width: '45vw' },
     ];
 
     return (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
-            {sparks.map((spark, i) => (
-                <motion.div
-                    key={i}
-                    className="absolute h-[2px]"
-                    initial={{ left: '-60%', opacity: 0 }}
-                    animate={{ 
-                        left: '160%', 
-                        opacity: [0, 1, 1, 0] 
-                    }}
-                    transition={{
-                        duration: spark.duration,
-                        delay: spark.delay,
-                        repeat: Infinity,
-                        ease: "linear",
-                        times: [0, 0.1, 0.9, 1]
-                    }}
-                    style={{ 
-                        top: spark.top, 
-                        width: spark.width,
-                        zIndex: 1
-                    }}
-                >
-                    {/* Glowing Head (White) */}
-                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white shadow-[0_0_20px_rgba(255,255,255,1),0_0_40px_rgba(59,130,246,1)] z-10" />
-                    
-                    {/* Comet Tail (White to Blue to Transparent) */}
-                    <div className="w-full h-full bg-gradient-to-l from-white via-indigo-500 to-transparent shadow-[0_0_20px_rgba(59,130,246,0.8)]" />
-                    
-                    {/* Extra Blue Glow for the edge */}
-                    <div className="absolute left-0 top-0 w-1/2 h-full bg-blue-600 blur-sm rounded-full opacity-50" />
-                </motion.div>
-            ))}
-        </div>
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
+        {sparks.map((spark, i) => (
+          <motion.div
+            key={i}
+            className="absolute h-[2px]"
+            initial={{ left: '-60%', opacity: 0 }}
+            animate={{
+              left: '160%',
+              opacity: [0, 1, 1, 0],
+            }}
+            transition={{
+              duration: spark.duration,
+              delay: spark.delay,
+              repeat: Infinity,
+              ease: 'linear',
+              times: [0, 0.1, 0.9, 1],
+            }}
+            style={{
+              top: spark.top,
+              width: spark.width,
+              zIndex: 1,
+            }}
+          >
+            {/* Glowing Head (White) */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-white shadow-[0_0_20px_rgba(255,255,255,1),0_0_40px_rgba(59,130,246,1)] z-10" />
+
+            {/* Comet Tail (White to Blue to Transparent) */}
+            <div className="w-full h-full bg-gradient-to-l from-white via-indigo-500 to-transparent shadow-[0_0_20px_rgba(59,130,246,0.8)]" />
+
+            {/* Extra Blue Glow for the edge */}
+            <div className="absolute left-0 top-0 w-1/2 h-full bg-blue-600 blur-sm rounded-full opacity-50" />
+          </motion.div>
+        ))}
+      </div>
     );
-};
-
-
+  };
 
   const heroTokens = {
     '--one-if-corner-shape-supported': '1',
@@ -441,10 +458,10 @@ const MovingSpark: React.FC = () => {
       >
         {/* Animated Background Gradients with Waves and Spark */}
         <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-            <AtmosphericWaves />
-            <MovingSpark />
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-indigo-500/10 blur-[150px] rounded-full" />
-            <div className="absolute -bottom-40 left-0 w-[400px] h-[400px] bg-blue-500/10 blur-[100px] rounded-full" />
+          <AtmosphericWaves />
+          <MovingSpark />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-indigo-500/10 blur-[150px] rounded-full" />
+          <div className="absolute -bottom-40 left-0 w-[400px] h-[400px] bg-blue-500/10 blur-[100px] rounded-full" />
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto text-center space-y-10">
@@ -454,7 +471,8 @@ const MovingSpark: React.FC = () => {
           </div>
 
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight text-center mx-auto">
-            Engineering Agentic <span className="text-blue-500">Infrastructure</span>
+            Engineering Agentic{' '}
+            <span className="text-blue-500">Infrastructure</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-blue-500 font-serif italic font-bold tracking-[0.1em] opacity-95 animate-fade-in-up">
@@ -463,7 +481,10 @@ const MovingSpark: React.FC = () => {
 
           <div className="max-w-3xl mx-auto space-y-4">
             <p className="text-lg md:text-xl text-gray-400 font-medium leading-relaxed italic">
-              &quot;Architecting Intelligent Infrastructure for the Agentic AI Era. <br /> Join the <span className="text-white font-bold not-italic">Octasence</span> engineering team.&quot;
+              &quot;Architecting Intelligent Infrastructure for the Agentic AI
+              Era. <br /> Join the{' '}
+              <span className="text-white font-bold not-italic">Octasence</span>{' '}
+              engineering team.&quot;
             </p>
             <p className="text-sm md:text-base text-gray-500 tracking-widest uppercase">
               Excellence is our standard &bull; Octasence is our mission
@@ -472,85 +493,110 @@ const MovingSpark: React.FC = () => {
 
           <div className="pt-6">
             <button
-              onClick={() => window.open('https://www.linkedin.com/company/octasence/jobs/', '_blank')}
+              onClick={() =>
+                window.open(
+                  'https://www.linkedin.com/company/octasence/jobs/',
+                  '_blank',
+                )
+              }
               className="group relative px-10 py-5 bg-[#4338ca] hover:bg-[#3d46ab] text-white rounded-full font-black text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-[0_20px_50px_rgba(67,56,202,0.4)] flex items-center gap-4 mx-auto"
             >
               Open Positions
-              <FiArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
+              <FiArrowRight
+                size={24}
+                className="group-hover:translate-x-2 transition-transform"
+              />
             </button>
           </div>
         </div>
       </header>
 
-      <div id="open-positions" className={`space-y-16 w-full py-24 ${mainConfig.containerClass} relative`}>
+      <div
+        id="open-positions"
+        className={`space-y-16 w-full py-24 ${mainConfig.containerClass} relative`}
+      >
         {/* Benefits Section */}
         <div className="px-4 lg:px-8 pb-12">
           <h2 className="text-5xl font-black text-white mb-12">Benefits</h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12">
-                {[
-                    { icon: <FiDollarSign size={28} />, text: 'Competitive salary' },
-                    { icon: <FiTrendingUp size={28} />, text: 'Opportunities for growth' },
-                    { icon: <FiHome size={28} />, text: 'Work from home' },
-                    { icon: <FiShield size={28} />, text: 'Mental well-being' },
-                    { icon: <FiMonitor size={28} />, text: 'Inclusive and diverse workplace' },
-                    { icon: <FiUsers size={28} />, text: 'Regular team-building events' },
-                    { icon: <FiBookOpen size={28} />, text: 'Learning & Development' },
-                    { icon: <FiStar size={28} />, text: 'Great culture and working environment' }
-                ].map((benefit, idx) => (
-                    <div 
-                        key={idx} 
-                        className="flex items-center gap-6 group animate-fade-in-up"
-                        style={{ animationDelay: `${idx * 150}ms`, animationFillMode: 'both' }}
-                    >
-                        <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300">
-                            {benefit.icon}
-                        </div>
-                        <span className="text-xl font-bold text-gray-300 group-hover:text-white transition-colors duration-300">
-                            {benefit.text}
-                        </span>
-                    </div>
-                ))}
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12">
+            {[
+              { icon: <FiDollarSign size={28} />, text: 'Competitive salary' },
+              {
+                icon: <FiTrendingUp size={28} />,
+                text: 'Opportunities for growth',
+              },
+              { icon: <FiHome size={28} />, text: 'Work from home' },
+              { icon: <FiShield size={28} />, text: 'Mental well-being' },
+              {
+                icon: <FiMonitor size={28} />,
+                text: 'Inclusive and diverse workplace',
+              },
+              {
+                icon: <FiUsers size={28} />,
+                text: 'Regular team-building events',
+              },
+              {
+                icon: <FiBookOpen size={28} />,
+                text: 'Learning & Development',
+              },
+              {
+                icon: <FiStar size={28} />,
+                text: 'Great culture and working environment',
+              },
+            ].map((benefit, idx) => (
+              <div
+                key={idx}
+                className="flex items-center gap-6 group animate-fade-in-up"
+                style={{
+                  animationDelay: `${idx * 150}ms`,
+                  animationFillMode: 'both',
+                }}
+              >
+                <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300">
+                  {benefit.icon}
+                </div>
+                <span className="text-xl font-bold text-gray-300 group-hover:text-white transition-colors duration-300">
+                  {benefit.text}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Big Premium Section Divider */}
         <div className="w-full flex justify-center pt-8 pb-8 pointer-events-none">
-            <div className="relative w-4/5 h-[2px] bg-gradient-to-r from-transparent via-indigo-600 to-transparent">
-                {/* Large Background Atmospheric Glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[100px] bg-indigo-500/10 blur-[100px] rounded-full" />
-                
-                {/* Radiant Pulsing Core Glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-[30px] bg-indigo-400/20 blur-2xl rounded-full" />
-                
-                {/* Solid Core Dot */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white shadow-[0_0_20px_rgba(129,140,248,1)]" />
-            </div>
-        </div>
-        
-        {/* Globe Section Re-added */}
-        <div className="flex flex-col items-center justify-center text-center pt-0 pb-12 px-4 space-y-8">
-            <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">
-                Join us <span className="text-indigo-400">across the globe</span>
-            </h2>
-            
-            <div 
-                className="relative w-full flex justify-center items-center group cursor-grab active:cursor-grabbing select-none"
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseUp}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleMouseUp}
-            >
-                <Globe 
-                    rotationOffset={rotation * 0.01} 
-                    isDragging={isDragging} 
-                />
-            </div>
+          <div className="relative w-4/5 h-[2px] bg-gradient-to-r from-transparent via-indigo-600 to-transparent">
+            {/* Large Background Atmospheric Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[100px] bg-indigo-500/10 blur-[100px] rounded-full" />
+
+            {/* Radiant Pulsing Core Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-[30px] bg-indigo-400/20 blur-2xl rounded-full" />
+
+            {/* Solid Core Dot */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white shadow-[0_0_20px_rgba(129,140,248,1)]" />
+          </div>
         </div>
 
+        {/* Globe Section Re-added */}
+        <div className="flex flex-col items-center justify-center text-center pt-0 pb-12 px-4 space-y-8">
+          <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">
+            Join us <span className="text-indigo-400">across the globe</span>
+          </h2>
+
+          <div
+            className="relative w-full flex justify-center items-center group cursor-grab active:cursor-grabbing select-none"
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleMouseUp}
+          >
+            <Globe rotationOffset={rotation * 0.01} isDragging={isDragging} />
+          </div>
+        </div>
       </div>
     </div>
   );
