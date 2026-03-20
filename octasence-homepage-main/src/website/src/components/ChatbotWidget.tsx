@@ -246,8 +246,12 @@ const ChatbotWidget: React.FC = () => {
   };
 
   // Responsive dimensions
-  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
-  const [windowHeight, setWindowHeight] = useState(typeof window !== 'undefined' ? window.innerHeight : 800);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 1200,
+  );
+  const [windowHeight, setWindowHeight] = useState(
+    typeof window !== 'undefined' ? window.innerHeight : 800,
+  );
 
   useEffect(() => {
     const handleResize = () => {
@@ -259,14 +263,16 @@ const ChatbotWidget: React.FC = () => {
   }, []);
 
   const isMobile = windowWidth < 640;
-  
+
   // Logic: On mobile, width is almost full screen. On desktop, it follows isExpanded.
   // Constrain width and height to not exceed viewport
   const baseWidth = isExpanded ? 430 : 360;
   const baseHeight = isExpanded ? 610 : 520;
 
   const widgetWidth = isMobile ? Math.min(windowWidth - 48, 430) : baseWidth;
-  const widgetHeight = isMobile ? Math.min(windowHeight - 140, 610) : baseHeight;
+  const widgetHeight = isMobile
+    ? Math.min(windowHeight - 140, 610)
+    : baseHeight;
 
   return (
     <div className="fixed bottom-6 right-6 z-[99999] flex flex-col items-end gap-3">
@@ -358,11 +364,10 @@ const ChatbotWidget: React.FC = () => {
                     </div>
                   )}
                   <div
-                    className={`max-w-[75%] rounded-2xl px-4 py-2.5 shadow-sm leading-relaxed ${
-                      msg.role === 'user'
-                        ? 'bg-[#5b6cf3] text-white rounded-br-sm'
-                        : 'bg-white text-gray-800 rounded-bl-sm'
-                    }`}
+                    className={`max-w-[75%] rounded-2xl px-4 py-2.5 shadow-sm leading-relaxed ${msg.role === 'user'
+                      ? 'bg-[#5b6cf3] text-white rounded-br-sm'
+                      : 'bg-white text-gray-800 rounded-bl-sm'
+                      }`}
                     style={{ fontSize }}
                   >
                     {msg.text}
@@ -422,9 +427,8 @@ const ChatbotWidget: React.FC = () => {
 
         {/* Green / grey status dot */}
         <span
-          className={`absolute bottom-1 right-1 w-4 h-4 rounded-full border-2 border-white shadow-md transition-colors duration-300 ${
-            isOpen ? 'bg-green-400' : 'bg-gray-400'
-          }`}
+          className={`absolute bottom-1 right-1 w-4 h-4 rounded-full border-2 border-white shadow-md transition-colors duration-300 ${isOpen ? 'bg-green-400' : 'bg-gray-400'
+            }`}
         />
       </motion.button>
     </div>
