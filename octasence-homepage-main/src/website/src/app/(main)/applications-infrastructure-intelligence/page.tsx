@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 
 import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
@@ -15,6 +16,7 @@ interface Sector {
   desc: string;
   icon: React.ReactNode;
   dot: string;
+  route: string; // ✅ ADD THIS
   cases: { n: string; t: string }[];
 }
 
@@ -108,16 +110,111 @@ const Icons: Record<string, React.ReactNode> = {
 // ─── Sector Data ──────────────────────────────────────────────────────────────
 
 const sectors: Sector[] = [
-  { label: 'Bridges',      tag: 'Infrastructure', desc: 'Real-time monitoring of bridge decks, cables, and bearings — detecting fatigue and anomalies before failure.',                                              icon: Icons.bridges,     dot: '#378ADD', cases: [] },
-  { label: 'Buildings',    tag: 'Urban',           desc: 'Tilt, settlement, vibration, and crack monitoring for commercial towers, residential blocks, and heritage structures.',                                    icon: Icons.buildings,   dot: '#7F77DD', cases: [] },
-  { label: 'Dams',         tag: 'Water',           desc: 'Seepage, pore pressure, and deformation monitoring for dam safety, maintenance, and regulatory compliance.',                                              icon: Icons.dams,        dot: '#378ADD', cases: [{ n: '03', t: 'Tailings dam failure risk monitoring' }, { n: '09', t: 'Aging dam structural health monitoring' }] },
-  { label: 'Tunnels',      tag: 'Underground',     desc: 'Deformation and convergence tracking during TBM and drill & blast construction phases — delivering real-time risk alerts.',                               icon: Icons.tunnels,     dot: '#7F77DD', cases: [{ n: '04', t: 'Metro tunnel structural health monitoring' }, { n: '08', t: 'TBM tunnel construction risk monitoring' }] },
-  { label: 'Energy',       tag: 'Infrastructure',  desc: 'Structural monitoring for wind, nuclear, offshore, and solar energy projects with targeted data analysis.',                                               icon: Icons.energy,      dot: '#EF9F27', cases: [] },
-  { label: 'Mining',       tag: 'Extraction',      desc: 'Mine and tailings dam geotechnical monitoring with intelligent structural and ground movement data insights.',                                            icon: Icons.mining,      dot: '#EF9F27', cases: [{ n: '01', t: 'Open-pit mine slope failure prevention' }, { n: '02', t: 'Underground mine roof collapse prediction' }, { n: '10', t: 'Digital twin for integrated mine-to-port infrastructure' }] },
-  { label: 'Landslides',   tag: 'Geohazard',       desc: 'Predictive early warning using GNSS, inclinometers, and piezometers delivering continuous slope stability data for timely action.',                       icon: Icons.landslides,  dot: '#D85A30', cases: [{ n: '06', t: 'Landslide risk monitoring for pipeline corridors' }] },
-  { label: 'Pipelines',    tag: 'Energy',          desc: 'Oil, water, and gas transmission monitoring for streamlined pipeline efficiency, leak detection, and safety.',                                            icon: Icons.pipelines,   dot: '#5DCAA5', cases: [{ n: '05', t: 'Oil & gas pipeline leak detection' }, { n: '06', t: 'Landslide risk monitoring for pipeline corridors' }] },
-  { label: 'Environment',  tag: 'Sustainability',  desc: 'Remote sensing and climate data for environmental management, sustainability reporting, and compliance monitoring.',                                       icon: Icons.environment, dot: '#5DCAA5', cases: [] },
-  { label: 'Smart Cities', tag: 'Urban',           desc: 'Integrated urban data analytics across all infrastructure assets from utilities and transit to civic structures.',                                        icon: Icons.smartCities, dot: '#7F77DD', cases: [] },
+  { 
+    label: 'Bridges',
+    route: '/sectors/bridges',
+    tag: 'Infrastructure',
+    desc: 'Real-time monitoring of bridge decks, cables, and bearings — detecting fatigue and anomalies before failure.',
+    icon: Icons.bridges,
+    dot: '#378ADD',
+    cases: []
+  },
+  { 
+    label: 'Buildings',
+    route: '/sectors/buildings',
+    tag: 'Urban',
+    desc: 'Tilt, settlement, vibration, and crack monitoring for commercial towers, residential blocks, and heritage structures.',
+    icon: Icons.buildings,
+    dot: '#7F77DD',
+    cases: []
+  },
+  { 
+    label: 'Dams',
+    route: '/sectors/dams',
+    tag: 'Water',
+    desc: 'Seepage, pore pressure, and deformation monitoring for dam safety, maintenance, and regulatory compliance.',
+    icon: Icons.dams,
+    dot: '#378ADD',
+    cases: [
+      { n: '03', t: 'Tailings dam failure risk monitoring' },
+      { n: '09', t: 'Aging dam structural health monitoring' }
+    ]
+  },
+  { 
+    label: 'Tunnels',
+    route: '/sectors/tunnels',
+    tag: 'Underground',
+    desc: 'Deformation and convergence tracking during TBM and drill & blast construction phases — delivering real-time risk alerts.',
+    icon: Icons.tunnels,
+    dot: '#7F77DD',
+    cases: [
+      { n: '04', t: 'Metro tunnel structural health monitoring' },
+      { n: '08', t: 'TBM tunnel construction risk monitoring' }
+    ]
+  },
+  { 
+    label: 'Energy',
+    route: '/sectors/energy',
+    tag: 'Infrastructure',
+    desc: 'Structural monitoring for wind, nuclear, offshore, and solar energy projects with targeted data analysis.',
+    icon: Icons.energy,
+    dot: '#EF9F27',
+    cases: []
+  },
+  { 
+    label: 'Mining',
+    route: '/sectors/mining',
+    tag: 'Extraction',
+    desc: 'Mine and tailings dam geotechnical monitoring with intelligent structural and ground movement data insights.',
+    icon: Icons.mining,
+    dot: '#EF9F27',
+    cases: [
+      { n: '01', t: 'Open-pit mine slope failure prevention' },
+      { n: '02', t: 'Underground mine roof collapse prediction' },
+      { n: '10', t: 'Digital twin for integrated mine-to-port infrastructure' }
+    ]
+  },
+  { 
+    label: 'Landslides',
+    route: '/sectors/landslides',
+    tag: 'Geohazard',
+    desc: 'Predictive early warning using GNSS, inclinometers, and piezometers delivering continuous slope stability data for timely action.',
+    icon: Icons.landslides,
+    dot: '#D85A30',
+    cases: [
+      { n: '06', t: 'Landslide risk monitoring for pipeline corridors' }
+    ]
+  },
+  { 
+    label: 'Pipelines',
+    route: '/sectors/pipelines',
+    tag: 'Energy',
+    desc: 'Oil, water, and gas transmission monitoring for streamlined pipeline efficiency, leak detection, and safety.',
+    icon: Icons.pipelines,
+    dot: '#5DCAA5',
+    cases: [
+      { n: '05', t: 'Oil & gas pipeline leak detection' },
+      { n: '06', t: 'Landslide risk monitoring for pipeline corridors' }
+    ]
+  },
+  { 
+    label: 'Environment',
+    route: '/sectors/environment',
+    tag: 'Sustainability',
+    desc: 'Remote sensing and climate data for environmental management, sustainability reporting, and compliance monitoring.',
+    icon: Icons.environment,
+    dot: '#5DCAA5',
+    cases: []
+  },
+  { 
+    label: 'Smart Cities',
+    route: '/sectors/smart-cities',
+    tag: 'Urban',
+    desc: 'Integrated urban data analytics across all infrastructure assets from utilities and transit to civic structures.',
+    icon: Icons.smartCities,
+    dot: '#7F77DD',
+    cases: []
+  },
 ];
 
 // ─── Background Strobe Canvas ─────────────────────────────────────────────────
@@ -259,6 +356,7 @@ interface OrbitWheelProps {
 }
 
 const OrbitWheel: React.FC<OrbitWheelProps> = ({ activeIdx, hoveredIdx, onHover, onClick }) => {
+  const router = useRouter();
   const stageRef  = useRef<HTMLDivElement>(null);
   const angleRef  = useRef(0);
   const lastTRef  = useRef<number | null>(null);
@@ -370,7 +468,12 @@ const OrbitWheel: React.FC<OrbitWheelProps> = ({ activeIdx, hoveredIdx, onHover,
               style={{ width: 78, height: 78 }}
               onMouseEnter={() => onHover(i)}
               onMouseLeave={() => onHover(null)}
-              onClick={() => onClick(i)}
+              onClick={() => {
+                onClick(i); // ✅ keeps your existing highlight behavior
+                setTimeout(() => {
+                  router.push(sectors[i].route); // ✅ navigation
+                }, 120); // small delay so animation feels smooth
+              }}
             >
               <span className={`transition-colors scale-125 ${isHighlighted ? 'text-blue-400' : 'text-blue-400/70'}`}>
                 {s.icon}
