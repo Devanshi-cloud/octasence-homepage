@@ -42,58 +42,58 @@ interface HLineConfig {
 
 const Icons: Record<string, React.ReactNode> = {
   bridges: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-7 h-7">
       <path d="M2 17h20M6 17V9l6-5 6 5v8" /><path d="M10 17v-5h4v5" />
     </svg>
   ),
   buildings: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-7 h-7">
       <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
     </svg>
   ),
   dams: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-7 h-7">
       <path d="M2 20h20M4 20V10l8-7 8 7v10" />
     </svg>
   ),
   tunnels: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-7 h-7">
       <circle cx="12" cy="12" r="9" /><path d="M7 17A5 5 0 0 1 17 17" />
     </svg>
   ),
   transport: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-7 h-7">
       <path d="M3 6h18M3 12h18M5 18h14" /><circle cx="7" cy="18" r="2" /><circle cx="17" cy="18" r="2" />
     </svg>
   ),
   energy: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-7 h-7">
       <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
     </svg>
   ),
   mining: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-7 h-7">
       <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4" />
     </svg>
   ),
   landslides: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-7 h-7">
       <path d="M3 17l4-8 4 4 4-6 4 4" /><path d="M3 21h18" />
     </svg>
   ),
   pipelines: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-7 h-7">
       <path d="M4 12h16M4 6c0 3.3 16 3.3 16 0M4 18c0-3.3 16-3.3 16 0" />
     </svg>
   ),
   environment: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-7 h-7">
       <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z" />
       <circle cx="12" cy="10" r="3" />
     </svg>
   ),
   smartCities: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-7 h-7">
       <rect x="2" y="2" width="20" height="20" rx="3" /><path d="M7 12h10M12 7v10" />
     </svg>
   ),
@@ -112,7 +112,6 @@ const sectors: Sector[] = [
   { label: 'Buildings',    tag: 'Urban',           desc: 'Tilt, settlement, vibration, and crack monitoring for commercial towers, residential blocks, and heritage structures.',                                    icon: Icons.buildings,   dot: '#7F77DD', cases: [] },
   { label: 'Dams',         tag: 'Water',           desc: 'Seepage, pore pressure, and deformation monitoring for dam safety, maintenance, and regulatory compliance.',                                              icon: Icons.dams,        dot: '#378ADD', cases: [{ n: '03', t: 'Tailings dam failure risk monitoring' }, { n: '09', t: 'Aging dam structural health monitoring' }] },
   { label: 'Tunnels',      tag: 'Underground',     desc: 'Deformation and convergence tracking during TBM and drill & blast construction phases — delivering real-time risk alerts.',                               icon: Icons.tunnels,     dot: '#7F77DD', cases: [{ n: '04', t: 'Metro tunnel structural health monitoring' }, { n: '08', t: 'TBM tunnel construction risk monitoring' }] },
-  { label: 'Transport',    tag: 'Mobility',        desc: 'Roads, railways, metros, and transit hubs — proactive maintenance intelligence across the full network lifecycle.',                                       icon: Icons.transport,   dot: '#5DCAA5', cases: [] },
   { label: 'Energy',       tag: 'Infrastructure',  desc: 'Structural monitoring for wind, nuclear, offshore, and solar energy projects with targeted data analysis.',                                               icon: Icons.energy,      dot: '#EF9F27', cases: [] },
   { label: 'Mining',       tag: 'Extraction',      desc: 'Mine and tailings dam geotechnical monitoring with intelligent structural and ground movement data insights.',                                            icon: Icons.mining,      dot: '#EF9F27', cases: [{ n: '01', t: 'Open-pit mine slope failure prevention' }, { n: '02', t: 'Underground mine roof collapse prediction' }, { n: '10', t: 'Digital twin for integrated mine-to-port infrastructure' }] },
   { label: 'Landslides',   tag: 'Geohazard',       desc: 'Predictive early warning using GNSS, inclinometers, and piezometers delivering continuous slope stability data for timely action.',                       icon: Icons.landslides,  dot: '#D85A30', cases: [{ n: '06', t: 'Landslide risk monitoring for pipeline corridors' }] },
@@ -128,24 +127,24 @@ const StrobeCanvas: React.FC<{ containerRef: React.RefObject<HTMLDivElement> }> 
   const rafRef    = useRef<number>(0);
 
   const strobes = useRef<StrobeConfig[]>(
-    Array.from({ length: 10 }, () => ({
-      x: Math.random(), y: Math.random() * 0.6,
-      angle: -70 + Math.random() * 140,
-      length: 0.4 + Math.random() * 0.55,
-      width: 0.4 + Math.random() * 1.4,
-      freq: 0.25 + Math.random() * 0.6,
+    Array.from({ length: 18 }, () => ({
+      x: Math.random(), y: Math.random(),
+      angle: -80 + Math.random() * 160,
+      length: 0.3 + Math.random() * 0.7,
+      width: 0.3 + Math.random() * 2.0,
+      freq: 0.15 + Math.random() * 0.7,
       phase: Math.random() * Math.PI * 2,
-      alpha: 0.05 + Math.random() * 0.09,
+      alpha: 0.04 + Math.random() * 0.11,
     }))
   );
 
   const hLines = useRef<HLineConfig[]>(
-    Array.from({ length: 7 }, () => ({
-      y: Math.random(), drift: 0.00008 + Math.random() * 0.00018,
-      freq: 0.15 + Math.random() * 0.3,
+    Array.from({ length: 12 }, () => ({
+      y: Math.random(), drift: 0.00006 + Math.random() * 0.0002,
+      freq: 0.1 + Math.random() * 0.35,
       phase: Math.random() * Math.PI * 2,
-      alpha: 0.03 + Math.random() * 0.05,
-      width: 0.3 + Math.random() * 0.8,
+      alpha: 0.03 + Math.random() * 0.07,
+      width: 0.2 + Math.random() * 1.2,
     }))
   );
 
@@ -200,6 +199,38 @@ const StrobeCanvas: React.FC<{ containerRef: React.RefObject<HTMLDivElement> }> 
         ctx.restore();
       });
 
+      // Floating particles
+      const particleCount = 40;
+      for (let p = 0; p < particleCount; p++) {
+        const px = ((Math.sin(t * 0.3 + p * 2.4) * 0.5 + 0.5) * W);
+        const py = ((Math.cos(t * 0.2 + p * 1.7) * 0.5 + 0.5) * H);
+        const pa = (Math.sin(t * 0.5 + p) * 0.5 + 0.5) * 0.18;
+        const pr = 1 + Math.sin(t * 0.4 + p * 0.9) * 0.8;
+        ctx.save();
+        ctx.globalAlpha = pa;
+        ctx.fillStyle = p % 3 === 0 ? '#7b9fff' : '#4f7fff';
+        ctx.beginPath();
+        ctx.arc(px, py, pr, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // Radial glow rings from center
+      const cx2 = W / 2, cy2 = H / 2;
+      for (let r = 0; r < 3; r++) {
+        const radius = (80 + r * 120 + (t * 30 * (r + 1)) % 300);
+        const ra = Math.max(0, 0.06 - radius / 2000);
+        if (ra < 0.002) continue;
+        ctx.save();
+        ctx.globalAlpha = ra;
+        ctx.strokeStyle = '#4f7fff';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(cx2, cy2, radius, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+      }
+
       rafRef.current = requestAnimationFrame(draw);
     };
 
@@ -213,7 +244,7 @@ const StrobeCanvas: React.FC<{ containerRef: React.RefObject<HTMLDivElement> }> 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none z-0 rounded-2xl"
+      className="absolute inset-0 w-full h-full pointer-events-none z-0"
     />
   );
 };
@@ -236,10 +267,10 @@ const OrbitWheel: React.FC<OrbitWheelProps> = ({ activeIdx, hoveredIdx, onHover,
   const spokesRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const N  = sectors.length;
-  const SW = 500;
+  const SW = 580;
   const CX = SW / 2;
   const CY = SW / 2;
-  const R  = 200;
+  const R  = 230;
 
   const positionNodes = useCallback((angle: number) => {
     sectors.forEach((_, i) => {
@@ -255,7 +286,7 @@ const OrbitWheel: React.FC<OrbitWheelProps> = ({ activeIdx, hoveredIdx, onHover,
       }
       if (sp) {
         const dx  = nx - CX, dy = ny - CY;
-        const len = Math.sqrt(dx * dx + dy * dy) - 36;
+        const len = Math.sqrt(dx * dx + dy * dy) - 39;
         const deg = (Math.atan2(dy, dx) * 180) / Math.PI;
         sp.style.width     = `${len}px`;
         sp.style.transform = `rotate(${deg}deg)`;
@@ -287,13 +318,14 @@ const OrbitWheel: React.FC<OrbitWheelProps> = ({ activeIdx, hoveredIdx, onHover,
       {/* Pulse rings */}
       <div className="absolute inset-0 rounded-full border border-blue-500/10 animate-[pulse-ring_3.5s_ease-out_infinite]" />
       <div className="absolute inset-0 rounded-full border border-blue-500/10 animate-[pulse-ring_3.5s_ease-out_infinite_1.75s]" />
+      <div className="absolute inset-0 rounded-full border border-blue-500/[0.05] animate-[pulse-ring_5s_ease-out_infinite_0.9s]" />
 
       {/* Orbit rings */}
       <div className="absolute inset-0 rounded-full border border-white/[0.07]" />
       <div className="absolute rounded-full border border-white/[0.07]"
-        style={{ width: 290, height: 290, top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }} />
+        style={{ width: 340, height: 340, top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }} />
       <div className="absolute rounded-full border border-white/[0.07]"
-        style={{ width: 150, height: 150, top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }} />
+        style={{ width: 170, height: 170, top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }} />
 
       {/* Hub */}
       <div
@@ -302,15 +334,15 @@ const OrbitWheel: React.FC<OrbitWheelProps> = ({ activeIdx, hoveredIdx, onHover,
             ? 'border-blue-500/50 bg-[#1a2130]'
             : 'border-white/13 bg-[#1a2130]'
         } border`}
-        style={{ width: 120, height: 120, top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }}
+        style={{ width: 135, height: 135, top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }}
       >
-        <div className="w-7 h-7 rounded-lg bg-blue-500/12 border border-blue-500/28 flex items-center justify-center mb-1 text-blue-400 flex-shrink-0">
+        <div className="w-10 h-10 rounded-xl bg-blue-500/12 border border-blue-500/28 flex items-center justify-center mb-2 text-blue-400 flex-shrink-0">
           {highlightIdx !== null ? sectors[highlightIdx].icon : Icons.platform}
         </div>
-        <p className="text-[11px] font-medium text-white leading-tight">
+        <p className="text-[13px] font-medium text-white leading-tight">
           {highlightIdx !== null ? sectors[highlightIdx].label : 'SHM Platform'}
         </p>
-        <p className="text-[9px] text-white/50 mt-0.5">
+        <p className="text-[11px] text-white/50 mt-1">
           {highlightIdx !== null ? sectors[highlightIdx].tag : '11 sectors'}
         </p>
       </div>
@@ -335,15 +367,15 @@ const OrbitWheel: React.FC<OrbitWheelProps> = ({ activeIdx, hoveredIdx, onHover,
                   ? 'border-blue-500/55 bg-[#1a2130] scale-110'
                   : 'border-white/[0.07] bg-[#131922] hover:border-blue-500/55 hover:bg-[#1a2130]'
               } border`}
-              style={{ width: 72, height: 72 }}
+              style={{ width: 78, height: 78 }}
               onMouseEnter={() => onHover(i)}
               onMouseLeave={() => onHover(null)}
               onClick={() => onClick(i)}
             >
-              <span className={`transition-colors ${isHighlighted ? 'text-blue-400' : 'text-blue-400/70'}`}>
+              <span className={`transition-colors scale-125 ${isHighlighted ? 'text-blue-400' : 'text-blue-400/70'}`}>
                 {s.icon}
               </span>
-              <span className={`text-[8px] font-medium mt-1 leading-tight transition-colors ${
+              <span className={`text-[9px] font-medium mt-1.5 leading-tight transition-colors ${
                 isHighlighted ? 'text-white' : 'text-white/50'
               }`}>
                 {s.label}
@@ -611,52 +643,49 @@ export default function SectorsPage() {
         {/* ── Divider ── */}
         <div className="h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
 
-        {/* ── Sectors ── */}
-        <section id="sectors" className="py-24 relative z-10">
-          <div className="max-w-[1100px] mx-auto px-12">
+        {/* ── Sectors ── full-width dark band */}
+        <section
+          id="sectors"
+          className="relative z-10 py-24"
+          ref={orbitWrapRef}
+          style={{ background: '#0d1520' }}
+        >
+          {/* Strobe canvas spans the full section */}
+          <StrobeCanvas containerRef={orbitWrapRef} />
 
+          <div className="relative z-10 max-w-[1100px] mx-auto px-12">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.9 }}
             >
-              <div className="inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.12em] uppercase text-white/40 mb-4">
-                <div className="w-5 h-px bg-white/20" />
-                Sectors
+              {/* Heading */}
+              <div className="mb-10">
+                <div className="inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.12em] uppercase text-white/40 mb-4">
+                  <div className="w-5 h-px bg-white/20" />
+                  Sectors
+                </div>
+                <h2
+                  className="text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-3 text-white"
+                  style={{ fontFamily: 'Syne, sans-serif' }}
+                >
+                  Tailored for every sector
+                </h2>
+                <p className="text-white/50 text-base font-light max-w-xl leading-relaxed">
+                  Beyond monitoring — explore how our SHM platform adapts across
+                  industries and infrastructure types.
+                </p>
               </div>
-              <h2
-                className="text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-3"
-                style={{ fontFamily: 'Syne, sans-serif' }}
-              >
-                Tailored for every sector
-              </h2>
-              <p className="text-white/50 text-base font-light max-w-xl mb-12 leading-relaxed">
-                Beyond monitoring — explore how our SHM platform adapts across
-                industries and infrastructure types.
-              </p>
-            </motion.div>
 
-            {/* Orbit card */}
-            <motion.div
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: 0.15 }}
-              ref={orbitWrapRef}
-              className="relative bg-[#131922] border border-white/[0.07] rounded-2xl px-6 pt-10 pb-9 overflow-hidden"
-            >
-              <StrobeCanvas containerRef={orbitWrapRef} />
-
-              <div className="relative z-10">
-                <OrbitWheel
-                  activeIdx={activeIdx}
-                  hoveredIdx={hoveredIdx}
-                  onHover={handleHover}
-                  onClick={handleClick}
-                />
-                <PreviewPanel sector={displaySector} />
-              </div>
+              {/* Orbit wheel */}
+              <OrbitWheel
+                activeIdx={activeIdx}
+                hoveredIdx={hoveredIdx}
+                onHover={handleHover}
+                onClick={handleClick}
+              />
+              <PreviewPanel sector={displaySector} />
             </motion.div>
           </div>
         </section>
