@@ -1,8 +1,8 @@
 'use client';
 
-import { AqGlobe02, AqMarkerPin01, AqMonitor03 } from '@airqo/icons-react';
 import { motion } from 'framer-motion';
 import jsPDF from 'jspdf';
+import { Globe, MapPin, Monitor } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FiAlertCircle, FiDownload, FiX } from 'react-icons/fi';
 
@@ -468,7 +468,7 @@ const NetworkCoveragePage = () => {
                     : `${statistics.totalSites}+`}
                 </p>
               </div>
-              <AqMonitor03 className="w-10 h-10 text-blue-500" />
+              <Monitor className="w-10 h-10 text-blue-500" />
             </div>
           </motion.div>
 
@@ -485,7 +485,7 @@ const NetworkCoveragePage = () => {
                     : statistics.countries.length}
                 </p>
               </div>
-              <AqGlobe02 className="w-10 h-10 text-purple-500" />
+              <Globe className="w-10 h-10 text-purple-500" />
             </div>
           </motion.div>
         </div>
@@ -566,7 +566,7 @@ const NetworkCoveragePage = () => {
                               : 'bg-white border-gray-200 hover:bg-gray-50 hover:border-gray-300'
                           }`}
                         >
-                          <AqMarkerPin01
+                          <MapPin
                             className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
                               selectedGrid?._id === grid._id
                                 ? 'text-blue-600'
