@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     if (!message || typeof message !== 'string' || !message.trim()) {
       return NextResponse.json(
         { error: 'Message is required.' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       console.error('VECTORSHIFT_API_KEY is not set');
       return NextResponse.json(
         { error: 'Server configuration error.' },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -33,7 +33,7 @@ export async function POST(req: Request) {
           Authorization: `Bearer ${apiKey}`,
         },
         body: formData,
-      }
+      },
     );
 
     if (!vsResponse.ok) {
@@ -41,7 +41,7 @@ export async function POST(req: Request) {
       console.error('VectorShift API error:', vsResponse.status, errorText);
       return NextResponse.json(
         { error: `Pipeline error: ${vsResponse.status}` },
-        { status: vsResponse.status }
+        { status: vsResponse.status },
       );
     }
 
@@ -60,7 +60,7 @@ export async function POST(req: Request) {
     console.error('Chat API route error:', err);
     return NextResponse.json(
       { error: 'Internal server error.' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
