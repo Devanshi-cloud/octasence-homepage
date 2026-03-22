@@ -16,10 +16,10 @@ const Footer = () => {
   return (
     <footer
       id="WebsiteFooter"
-      className={`relative py-10 px-4 ${mainConfig.containerClass} text-[14px]`}
+      className={`relative py-12 md:py-14 px-4 ${mainConfig.containerClass} text-[14px]`}
     >
       <ScrollToTopButton />
-      <div className="octa-card relative overflow-hidden rounded-[2rem] px-6 py-10 md:px-10">
+      <div className="octa-card relative overflow-hidden rounded-[2rem] px-6 py-12 md:px-12 md:py-14">
         <div
           className="absolute inset-0 opacity-[0.07] pointer-events-none"
           style={{
@@ -30,9 +30,9 @@ const Footer = () => {
         />
         <div className="absolute -top-20 right-0 h-44 w-44 rounded-full bg-blue-500/20 blur-3xl pointer-events-none" />
         {/* Top Section with Grid */}
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
           {/* Logo and Social Media */}
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col space-y-5">
             <div>
               <div className="flex items-center gap-2">
                 <Image
@@ -43,46 +43,46 @@ const Footer = () => {
                   className="h-[4.5rem] w-[4.5rem] rounded-2xl object-contain"
                 />
               </div>
-              <h1 className="text-white/72 font-semibold mt-4 max-w-md leading-relaxed">
+              <h1 className="text-white/72 font-semibold mt-5 max-w-md leading-relaxed">
                 AI-Powered Infrastructure Intelligence
               </h1>
             </div>
-            <div className="flex space-x-4 mt-6">
+            <div className="flex flex-wrap items-center gap-4 md:gap-5 mt-2">
               <Link
                 href="https://www.linkedin.com/company/octasence"
                 aria-label="LinkedIn"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-300 bg-white/5 border border-white/10 rounded-full p-2.5 hover:bg-white/10 transition-all"
+                className="text-sky-300 bg-white/5 border border-white/15 rounded-full p-3.5 hover:bg-blue-500/15 hover:border-blue-400/35 hover:text-white transition-all shadow-sm"
               >
-                <FaLinkedinIn size={14} />
+                <FaLinkedinIn size={22} className="drop-shadow-sm" />
               </Link>
               <Link
                 href="https://www.youtube.com/@octasence"
                 aria-label="YouTube"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-300 bg-white/5 border border-white/10 rounded-full p-2.5 hover:bg-white/10 transition-all"
+                className="text-sky-300 bg-white/5 border border-white/15 rounded-full p-3.5 hover:bg-blue-500/15 hover:border-blue-400/35 hover:text-white transition-all shadow-sm"
               >
-                <FaYoutube size={14} />
+                <FaYoutube size={22} className="drop-shadow-sm" />
               </Link>
               <Link
                 href="https://x.com/octasence"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter"
-                className="text-blue-300 bg-white/5 border border-white/10 rounded-full p-2.5 hover:bg-white/10 transition-all"
+                className="text-sky-300 bg-white/5 border border-white/15 rounded-full p-3.5 hover:bg-blue-500/15 hover:border-blue-400/35 hover:text-white transition-all shadow-sm"
               >
-                <FaXTwitter size={14} />
+                <FaXTwitter size={22} className="drop-shadow-sm" />
               </Link>
               <Link
                 href="https://www.instagram.com/octasence"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="text-blue-300 bg-white/5 border border-white/10 rounded-full p-2.5 hover:bg-white/10 transition-all"
+                className="text-sky-300 bg-white/5 border border-white/15 rounded-full p-3.5 hover:bg-blue-500/15 hover:border-blue-400/35 hover:text-white transition-all shadow-sm"
               >
-                <FaInstagram size={14} />
+                <FaInstagram size={22} className="drop-shadow-sm" />
               </Link>
             </div>
           </div>

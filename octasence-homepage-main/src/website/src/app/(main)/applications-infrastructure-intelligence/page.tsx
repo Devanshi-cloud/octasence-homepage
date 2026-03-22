@@ -551,10 +551,14 @@ const OrbitWheel: React.FC<OrbitWheelProps> = ({
           {highlightIdx !== null ? sectors[highlightIdx].icon : Icons.platform}
         </div>
         <p className="text-[13px] font-medium text-white leading-tight">
-          {highlightIdx !== null ? sectors[highlightIdx].label : 'SHM Platform'}
+          {highlightIdx !== null
+            ? sectors[highlightIdx].label
+            : 'Octasence SHM'}
         </p>
         <p className="text-[11px] text-white/50 mt-1">
-          {highlightIdx !== null ? sectors[highlightIdx].tag : '5 sectors'}
+          {highlightIdx !== null
+            ? sectors[highlightIdx].tag
+            : `${sectors.length} sectors · Select to preview`}
         </p>
       </div>
 
@@ -805,13 +809,16 @@ export default function SectorsPage() {
 
   return (
     <div
-      className="min-h-screen bg-[#0c1018] overflow-x-hidden selection:bg-blue-500 selection:text-white"
+      className="min-h-screen overflow-x-hidden selection:bg-blue-500 selection:text-white"
       style={{
+        backgroundColor: '#0a0f1c',
         backgroundImage: `
-          linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px)
+          radial-gradient(ellipse 100% 80% at 50% -30%, rgba(59, 130, 246, 0.14), transparent 55%),
+          radial-gradient(ellipse 70% 50% at 100% 20%, rgba(99, 102, 241, 0.12), transparent 45%),
+          linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)
         `,
-        backgroundSize: '44px 44px',
+        backgroundSize: 'auto, auto, 44px 44px, 44px 44px',
       }}
     >
       <Navbar />
@@ -887,7 +894,7 @@ export default function SectorsPage() {
                   href="#case-studies"
                   className="inline-flex items-center gap-2 px-8 py-3.5 border border-white/13 text-white/60 rounded-full text-sm hover:text-white hover:border-white/20 transition-colors"
                 >
-                  View case studies
+                  Browse case studies
                 </Link>
               </div>
 
@@ -899,10 +906,13 @@ export default function SectorsPage() {
                 className="flex items-center justify-center gap-10 mt-16 flex-wrap"
               >
                 {[
-                  { num: '5', label: 'Sectors covered' },
-                  { num: '10', label: 'Case studies' },
+                  {
+                    num: String(sectors.length),
+                    label: 'Infrastructure sectors',
+                  },
+                  { num: '10+', label: 'Reference deployments' },
                   { num: '24/7', label: 'Live monitoring' },
-                  { num: '<1s', label: 'Alert latency' },
+                  { num: '<1s', label: 'Typical alert latency' },
                 ].map((s, i) => (
                   <React.Fragment key={i}>
                     {i > 0 && (
@@ -934,7 +944,10 @@ export default function SectorsPage() {
           id="sectors"
           className="relative z-10 py-24"
           ref={orbitWrapRef}
-          style={{ background: '#0d1520' }}
+          style={{
+            background:
+              'linear-gradient(180deg, rgba(13,21,32,0.95) 0%, rgba(10,15,28,0.98) 100%)',
+          }}
         >
           {/* Strobe canvas spans the full section */}
           <StrobeCanvas containerRef={orbitWrapRef} />
@@ -965,7 +978,10 @@ export default function SectorsPage() {
               </div>
 
               {/* Orbit wheel + Preview panel side by side */}
-              <div className="flex items-center gap-12 min-h-[580px]">
+              <div
+                id="case-studies"
+                className="flex items-center gap-12 min-h-[580px] scroll-mt-28"
+              >
                 <div className="flex-shrink-0">
                   <OrbitWheel
                     activeIdx={activeIdx}
